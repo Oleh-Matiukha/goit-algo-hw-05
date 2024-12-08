@@ -23,6 +23,24 @@ print(fib(10))  # Виведе 55
 print(fib(15))  # Виведе 610
 
 
+# Task 2
+import re
+
+def generator_numbers(text: str):
+    pattern = '\d+\.*\d*'   # Pattern for regular expressions.
+    numbers = re.findall(pattern, text)    # Find all numbers in the text.
+    for number in numbers:
+        yield float(number)    # Returning generator with real numbers.
+
+def sum_profit(text: str, func):
+    return sum(func(text))    # Calculation of the total sum.
+
+
+text = "Загальний дохід працівника складається з декількох частин: 1000.01 як основний дохід, доповнений додатковими надходженнями 27.45 і 324.00 доларів."
+total_income = sum_profit(text, generator_numbers)
+print(f"Загальний дохід: {total_income}")
+
+
 # Task 4
 def input_error(func):
     def inner(*args, **kwargs):
@@ -90,4 +108,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
